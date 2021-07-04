@@ -21,16 +21,29 @@
   .container, #article-style {
     margin: 0px;
   }
-  .field {
-    margin: 0px;
-    padding: 5px;
-    margin-bottom: 0px;
-  }
+
   .field:not(:last-child) {
       margin: 0px;
   }
-  .button {
-
-    width: 100%;
-
+  .field {
+    margin: 0px;
+    padding: 0px;
   }
+  .button {
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 0 2px #999;
+  }
+  .button:hover {
+    background-color: rgb(37, 190, 152);
+  }
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+  }
+  .field-padding {
+      margin-bottom: 7px;
+  }
+  
+
