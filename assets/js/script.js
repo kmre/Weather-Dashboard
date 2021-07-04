@@ -11,11 +11,11 @@
     function inBoxCheck(event) {
         event.preventDefault();
         var cityInput = inBox.value.trim();
-        var letters = /^[A-Za-z]+$/;
+        var cityLower = cityInput.toLowerCase();
+        var letters = /^[a-zA-Z\s]+\,[a-zA-Z\s]+$/;
         console.log(cityInput)
-        if (cityInput && cityInput.match(letters)) {
+        if (cityInput && cityLower.match(letters)) {
             messageBox(true);
-            var cityLower = cityInput.toLowerCase();
             weatherAPI(cityLower);
         }
         else { 
@@ -70,7 +70,6 @@
             })
     }
 
-
     function dataForContainers(data) {
         console.log(data)
         var dataArray = data.data;
@@ -85,7 +84,6 @@
         var weatherState = data.state_code;
 
 
-
                dataArray.forEach((value, index, array) => {
                         //main api variables by index
                         var weatherIndexed = dataArray[index];
@@ -93,6 +91,8 @@
                         var tempIcon = weatherIndexed.weather.icon;
                         var icon = "https://www.weatherbit.io/static/img/icons/" + tempIcon + ".png"
                         var altImg = weatherIndexed.weather.description;
+                        var humidity = weatherIndexed.rh;
+                        var uvIndex = weatherIndexed.uv;
                         console.log("weather index " + index)
                         console.log("city weather " + weathertemp)
                         //creates a container for each result
@@ -114,7 +114,7 @@
                        //$(pW).attr({"id": "event-results-w" + index});
                        subContainerCreateW.appendChild(pW);
                        var nameTxt = "Temp "  + ": "+ weathertemp + " F" + " " + "</br>" + "City: " + `${weatherCity}` + 
-                       " State: " + `${weatherState}`;
+                       " State: " + `${weatherState}` + "</br>" + "Humidity: " + humidity + " %" + " UV Index: " + uvIndex;
                        pW.innerHTML = nameTxt; 
         
                        var imgContainer = document.createElement("img");
@@ -124,10 +124,3 @@
                        console.log(icon)
                 })
     }
-
-//   function getLocation () {
-//     navigator.geolocation.getCurrentPosition((position) => {
-//       weatherAPI(position.coords.latitude, position.coords.longitude);
-//     });
-
-//   }
