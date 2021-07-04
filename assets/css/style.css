@@ -48,5 +48,15 @@
   /* #message {
     visibility: hidden;
   } */
+  #main-body {
+    margin: 0px;
+
+  }
+  #results-main {
+    display: flex;
+    flex-flow: column nowrap;
+
+  }
+
   
 

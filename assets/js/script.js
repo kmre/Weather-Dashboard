@@ -12,9 +12,10 @@
         event.preventDefault();
         var cityInput = inBox.value.trim();
         var cityLower = cityInput.toLowerCase();
-        var letters = /^[a-zA-Z\s]+\,[a-zA-Z\s]+$/;
+        var lettersState = /^[a-zA-Z\s]+\,[a-zA-Z\s]+$/;
+        var lettersCity = /^[a-zA-Z\s]+$/;
         console.log(cityInput)
-        if (cityInput && cityLower.match(letters)) {
+        if (cityInput && (cityLower.match(lettersState)||cityLower.match(lettersCity))) {
             messageBox(true);
             weatherAPI(cityLower);
         }
@@ -114,7 +115,7 @@
                        //$(pW).attr({"id": "event-results-w" + index});
                        subContainerCreateW.appendChild(pW);
                        var nameTxt = "Temp "  + ": "+ weathertemp + " F" + " " + "</br>" + "City: " + `${weatherCity}` + 
-                       " State: " + `${weatherState}` + "</br>" + "Humidity: " + humidity + " %" + " UV Index: " + uvIndex;
+                       ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + " %" + "</br>" + "UV Index: " + uvIndex;
                        pW.innerHTML = nameTxt; 
         
                        var imgContainer = document.createElement("img");
