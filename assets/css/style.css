@@ -17,3 +17,20 @@
   .hero {
     background-image: linear-gradient(to right, rgb(0,143,210),rgb(171, 19, 241))
   }
+
+  .container, #article-style {
+    margin: 0px;
+  }
+  .field {
+    margin: 0px;
+    padding: 5px;
+    margin-bottom: 0px;
+  }
+  .field:not(:last-child) {
+      margin: 0px;
+  }
+  .button {
+
+    width: 100%;
+
+  }

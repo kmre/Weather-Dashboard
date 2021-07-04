@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -22,20 +23,50 @@
             </div>
           </section>
     </header>
-
+    <!-- Container for both search city and results -->
     <div class="container columns">
-        <article class="panel is-info column is-one-third">
-            <p class="panel-heading">
-            Search for a City:
-            </p>
-            <div class="panel-block">
+        <!-- container for search city -->
+        <article id="article-style" class="panel is-info column is-one-third">
+            <!-- container for top section of search -->
+           
+                <div class="">
+                    <p class="panel-heading">
+                    Search for a City:
+                    </p>
+                    <div class="field">
+                        <p class="control">
+                        <input class="input" type="text" placeholder="Enter City here">
+                        </p>
+                    </div>
+                    <div class="field is-horizontal">
+                    <!-- <p class="control"> -->
+                        <button class="button is-success">
+                        Search
+                        </button>
+                    <!-- </p> -->
+                    </div>
+                </div>
+           
+            <!-- <div class="field is-grouped">
+                <p class="control is-expanded">
+                  <input class="input" type="text" placeholder="Enter City here">
+                </p>
+                <p class="control">
+                  <a class="button is-info">
+                    Search
+                  </a>
+                </p>
+            </div> -->
+            <!-- <div class="panel-block">
             <p class="control has-icons-left">
                 <input class="input is-info" type="text" placeholder="Enter the City here">
                 <span class="icon is-left">
                 <i class="fas fa-search" aria-hidden="true"></i>
                 </span>
             </p>
-            </div>
+            </div> -->
+            <!-- container for saved searches -->
+            <div class="">
             <a class="panel-block is-active">
             <span class="panel-icon">
                 <i class="fas fa-book" aria-hidden="true"></i>
@@ -60,6 +91,7 @@
             </span>
             jgthms.github.io
             </a>
+        </div>
         </article>
 
         <div class="column container" id="results-main-w">
