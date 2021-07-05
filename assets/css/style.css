@@ -127,6 +127,28 @@
     font-size: 25px;
     text-align: center;
   }
+  #save-div {
+    display: flex;
+  } 
+  #save-div-btn {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  #button {
+    width: 100%;
+    cursor: pointer;
+    background-color: rgb(63, 240, 240);
+    box-shadow: 0 2px #999;
+    margin: 2px;
+  }
+  #button:hover {
+    background-color: rgb(37, 190, 152);
+  }
+  #button:active {
+    background-color: #a7f5aa;
+    box-shadow: 0 2px #666;
+    transform: translateY(2px);
+  }
 
   @media screen and (max-width: 1200px) {
     #results-weather2 {

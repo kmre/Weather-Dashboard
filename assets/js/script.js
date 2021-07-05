@@ -144,7 +144,7 @@
             console.log(storedCities)
             var btnContainer = document.getElementById("save-div-btn");
             var createBtn = document.createElement("button");
-            $(createBtn).attr({"id":"button","class":"city"});
+            $(createBtn).attr({"id":"button","class":"city column"});
             btnContainer.appendChild(createBtn);
             var btnTxt = `${item}`.toUpperCase();
             createBtn.innerHTML = btnTxt; 
@@ -156,7 +156,7 @@
     function createBtn0(srchCity) {
         var btnContainer = document.getElementById("save-div-btn");
              var createBtn = document.createElement("button");
-             $(createBtn).attr({"id":"button", "class":"city"});
+             $(createBtn).attr({"id":"button", "class":"city column"});
              btnContainer.appendChild(createBtn);
              var btnTxt = srchCity.toUpperCase();
              createBtn.innerHTML = btnTxt;
@@ -167,7 +167,7 @@
         btns.remove();
         var container = document.getElementById("save-div")
         var createDiv = document.createElement("div");
-             $(createDiv).attr({"id":"save-div-btn", "class":"container box"});
+             $(createDiv).attr({"id":"save-div-btn", "class":"container box columns"});
              container.appendChild(createDiv);
 
     }
