@@ -21,12 +21,21 @@
     deleteMessage.addEventListener("click", reset);
     srchBtn.addEventListener("click", inBoxCheck); //Made the fetch into its own fn
 
+    function selectedButton(clicked_id, clicked_txt) { 
+        //debugger;
+        var city = clicked_txt;
+        console.log(city);
+        weatherAPI(city)
+
+    }
+
     function inBoxCheck(event) {
         event.preventDefault();
         var cityInput = inBox.value.trim();
         var cityLower = cityInput.toLowerCase();
         var lettersState = /^[a-zA-Z\s]+\,[a-zA-Z\s]+$/;
         var lettersCity = /^[a-zA-Z\s]+$/;
+        inBox.value = "";
         //console.log(cityInput)
         if (cityInput && (cityLower.match(lettersState)||cityLower.match(lettersCity))) {
             messageBox(true);
@@ -156,7 +165,7 @@
     function createBtn0(srchCity) {
         var btnContainer = document.getElementById("save-div-btn");
              var createBtn = document.createElement("button");
-             $(createBtn).attr({"id":"button", "class":"city column"});
+             $(createBtn).attr({"id":"button", "class":"city column", "onClick": "selectedButton(this.id, this.innerHTML)"});
              btnContainer.appendChild(createBtn);
              var btnTxt = srchCity.toUpperCase();
              createBtn.innerHTML = btnTxt;
@@ -204,14 +213,21 @@
         }
     }
 
-  function weatherAPI(latitude, longitude) {
+  function weatherAPI(cityBtn) {
     var apiKey = "d7c30de99a3b40fb84ca75fd821b8b25";
     var urlWeatherApi = "https://api.weatherbit.io/v2.0/forecast/daily?&key=";
+    var city = "";
 
     // var lat = latitude;
     // var lon = longitude;
-    var city = $(inBox).val();
-
+    if ($(inBox).val()) {
+        city = $(inBox).val();
+    }
+    else if (cityBtn) {
+        city = cityBtn;
+    }
+    console.log(cityBtn)
+    console.log(city)
     var daysDisplay = [6]; //max # of days to display
     var units = "I";
 
