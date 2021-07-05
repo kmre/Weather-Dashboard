@@ -13,6 +13,13 @@
     $("#message").hide();
     window.addEventListener('DOMContentLoaded', displaySavedObj);
 
+    window.onunload = () => {
+
+        // Clear the local storage when window is closed
+       // localStorage.setItem("cities") = [];
+       localStorage.clear();
+     }
+
     deleteMessage.addEventListener("click", reset);
     srchBtn.addEventListener("click", inBoxCheck); //Made the fetch into its own fn
 
@@ -113,8 +120,8 @@
 
     function saveSearch(cityInput) {
         var city = cityInput;
-        var maxNumber = 3; 
-        var stored_cities = "cities"
+        var maxNumber = 7; 
+        var stored_cities = "cities";
         console.log(city);
         var srchCity = city;
         console.log(srchCity);
