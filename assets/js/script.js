@@ -13,12 +13,10 @@
     $("#message").hide();
     window.addEventListener('DOMContentLoaded', displaySavedObj);
 
-    window.onunload = () => {
-
-        // Clear the local storage when window is closed
-       // localStorage.setItem("cities") = [];
-       localStorage.clear();
-     }
+    //clear local storage when window is closed
+    //window.onunload = () => {
+       //localStorage.clear();
+     //}
 
     deleteMessage.addEventListener("click", reset);
     srchBtn.addEventListener("click", inBoxCheck); //Made the fetch into its own fn
@@ -120,24 +118,23 @@
 
     function saveSearch(cityInput) {
         var city = cityInput;
-        var maxNumber = 7; 
+        var maxNumber = 10; 
         var stored_cities = "cities";
-        console.log(city);
+       // console.log(city);
         var srchCity = city;
-        console.log(srchCity);
+        //console.log(srchCity);
 
         var storedCities = JSON.parse(localStorage.getItem(stored_cities)) ?? [];
-        console.log(storedCities)
-        console.log(!storedCities.length)
+        //console.log(storedCities)
+       // console.log(!storedCities.length)
 
         if (!storedCities.length) {
             //save city
              //pushes new city to the array
              storedCities.push(srchCity);
-             console.log(storedCities)
              localStorage.setItem(stored_cities, JSON.stringify(storedCities));
              createBtn0(srchCity);
-             console.log(document.getElementById("button"))
+
              if (!document.getElementById("button")) {
                 deleteBtns();
              }
@@ -145,18 +142,15 @@
         else {
             storedCities.push(srchCity);
             localStorage.setItem(stored_cities, JSON.stringify(storedCities));
-            //storedCities.splice(maxNumber);
+            if (storedCities.length > maxNumber) {
+                createBtnSplice(storedCities, stored_cities)
+            }
+            else {
             deleteBtns();
             storedCities.forEach((item) => {
-            console.log(item)
-            console.log(storedCities)
-            var btnContainer = document.getElementById("save-div-btn");
-            var createBtn = document.createElement("button");
-            $(createBtn).attr({"id":"button","class":"city column"});
-            btnContainer.appendChild(createBtn);
-            var btnTxt = `${item}`.toUpperCase();
-            createBtn.innerHTML = btnTxt; 
-        })
+                createBtn0(item);
+            })
+            }   
         }
     }
     function createBtn0(srchCity) {
@@ -168,6 +162,22 @@
              createBtn.innerHTML = btnTxt;
     }
 
+    function createBtnSplice(storedCities, stored_cities) {
+        //deletes top saved element if array > 10
+        storedCities.splice(0,1);
+        localStorage.setItem(stored_cities, JSON.stringify(storedCities));
+        console.log(storedCities.length)
+        deleteBtns();
+        storedCities.forEach((item) => {
+        var btnContainer = document.getElementById("save-div-btn");
+        var createBtn = document.createElement("button");
+        $(createBtn).attr({"id":"button","class":"city column"});
+        btnContainer.appendChild(createBtn);
+        var btnTxt = `${item}`.toUpperCase();
+        createBtn.innerHTML = btnTxt; 
+    })
+    }
+
     function deleteBtns() {
         var btns = document.getElementById("save-div-btn")
         btns.remove();
@@ -176,6 +186,7 @@
              $(createDiv).attr({"id":"save-div-btn", "class":"container box columns"});
              container.appendChild(createDiv);
     }
+
     function displaySavedObj() {
         var stored_cities = "cities"
         var storedCities = JSON.parse(localStorage.getItem(stored_cities)) ?? [];
