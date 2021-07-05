@@ -11,6 +11,7 @@
 
 
     $("#message").hide();
+    window.addEventListener('DOMContentLoaded', displaySavedObj);
 
     deleteMessage.addEventListener("click", reset);
     srchBtn.addEventListener("click", inBoxCheck); //Made the fetch into its own fn
@@ -149,9 +150,7 @@
             var btnTxt = `${item}`.toUpperCase();
             createBtn.innerHTML = btnTxt; 
         })
-
         }
-
     }
     function createBtn0(srchCity) {
         var btnContainer = document.getElementById("save-div-btn");
@@ -169,7 +168,22 @@
         var createDiv = document.createElement("div");
              $(createDiv).attr({"id":"save-div-btn", "class":"container box columns"});
              container.appendChild(createDiv);
-
+    }
+    function displaySavedObj() {
+        var stored_cities = "cities"
+        var storedCities = JSON.parse(localStorage.getItem(stored_cities)) ?? [];
+        if (storedCities.length) {
+            storedCities.forEach((item) => {
+                console.log(item)
+                console.log(storedCities)
+                var btnContainer = document.getElementById("save-div-btn");
+                var createBtn = document.createElement("button");
+                $(createBtn).attr({"id":"button","class":"city column"});
+                btnContainer.appendChild(createBtn);
+                var btnTxt = `${item}`.toUpperCase();
+                createBtn.innerHTML = btnTxt; 
+            })
+        }
     }
 
   function weatherAPI(latitude, longitude) {
