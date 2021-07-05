@@ -103,6 +103,7 @@
                     var altImg = weatherIndexed.weather.description;
                     var humidity = weatherIndexed.rh;
                     var uvIndex = weatherIndexed.uv;
+                    var windSpeed = weatherIndexed.wind_spd
                     console.log("weather index " + index)
                     console.log("city weather " + weathertemp)
                     //creates a container for each result
@@ -124,7 +125,8 @@
                         //$(pW).attr({"id": "event-results-w" + index});
                         subContainerCreateW.appendChild(pW);
                         var nameTxt = "Temp "  + ": "+ weathertemp + " F" + " " + "</br>" + "City: " + `${weatherCity}` + 
-                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" + "UV Index: " + uvIndex;
+                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" + "UV Index: " + uvIndex +
+                        "</br>" + "Wind Speed: " + windSpeed;
                         pW.innerHTML = nameTxt; 
         
                         var imgContainer = document.createElement("img");
@@ -151,7 +153,8 @@
                         //$(pW).attr({"id": "event-results-w" + index});
                         subContainerCreateW.appendChild(pW);
                         var nameTxt = "Temp "  + ": "+ weathertemp + " F" + " " + "</br>" + "City: " + `${weatherCity}` + 
-                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" + "UV Index: " + uvIndex;
+                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" + "UV Index: " + uvIndex +
+                        "</br>" + "Wind Speed: " + windSpeed;
                         pW.innerHTML = nameTxt; 
         
                         var imgContainer = document.createElement("img");
