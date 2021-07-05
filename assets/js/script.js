@@ -2,6 +2,13 @@
     var srchBtn = document.querySelector("#srch-btn");
     var inBox = document.querySelector("#in-box");
     var deleteMessage = document.querySelector("#delete-message");
+    var low = false;
+    var mod = false;
+    var high = false;
+    var vH = false;
+    var extreme = false;
+    var color = "";
+
 
     $("#message").hide();
 
@@ -36,6 +43,69 @@
 
     function reset() {
         messageBox(true);
+    }
+
+    function uvIndexCheck(uvIndex,index) {
+
+        if (uvIndex > 0 && uvIndex <= 2) {
+            low = true
+            mod = false;
+            high = false;
+            vH = false;
+            extreme = false;            
+        }
+        else if (uvIndex > 2 && uvIndex <= 5) {
+            low = false
+            mod = true;
+            high = false;
+            vH = false;
+            extreme = false; 
+        }
+        else if (uvIndex > 5 && uvIndex <= 7) {
+            low = false
+            mod = false;
+            high = true;
+            vH = false;
+            extreme = false;
+        }
+        else if (uvIndex > 7 && uvIndex <= 10) {
+            low = false
+            mod = false;
+            high = false;
+            vH = true;
+            extreme = false;
+        }
+        else if (uvIndex > 10) {
+            low = false
+            mod = false;
+            high = false;
+            vH = false;
+            extreme = true;
+        }
+        pColor(low, mod, high, vH, extreme, index);
+    }
+
+    function pColor(low, mod, high, vH, extreme, index) {
+        
+        if (low) {
+            console.log("green")  
+            color = "green";  
+        }
+        else if (mod) {
+            console.log("yellow")
+            color = "yellow";        
+        }
+        else if (high) {
+            console.log("orange")
+            color = "orange"; 
+        }
+        else if (vH) {
+            console.log("Red")
+            color = "red"; 
+        }
+        else if (extreme) {
+            color = "purple"; 
+        }
     }
 
   function weatherAPI(latitude, longitude) {
@@ -125,10 +195,20 @@
                         //$(pW).attr({"id": "event-results-w" + index});
                         subContainerCreateW.appendChild(pW);
                         var nameTxt = "Temp "  + ": "+ weathertemp + " F" + " " + "</br>" + "City: " + `${weatherCity}` + 
-                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" + "UV Index: " + uvIndex +
+                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" +
                         "</br>" + "Wind Speed: " + windSpeed;
                         pW.innerHTML = nameTxt; 
-        
+
+                        uvIndexCheck(uvIndex);
+
+                        var pW2 = document.createElement("p");
+                        $(pW2).attr({"id": "color"+index, "class":color});
+                        subContainerCreateW.appendChild(pW2);
+                        var nameTxt2 = "UV Index: " + uvIndex;
+                        pW2.innerHTML = nameTxt2;
+
+                        
+
                         var imgContainer = document.createElement("img");
                         $(imgContainer).attr({"src":icon, "class":"icon", "alt":altImg});
                         subContainerCreateW.appendChild(imgContainer);
@@ -153,10 +233,18 @@
                         //$(pW).attr({"id": "event-results-w" + index});
                         subContainerCreateW.appendChild(pW);
                         var nameTxt = "Temp "  + ": "+ weathertemp + " F" + " " + "</br>" + "City: " + `${weatherCity}` + 
-                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" + "UV Index: " + uvIndex +
-                        "</br>" + "Wind Speed: " + windSpeed;
+                        ", " + `${weatherState}` + "</br>" + "Humidity: " + humidity + "%" + "</br>" + "Wind Speed: " + windSpeed;
                         pW.innerHTML = nameTxt; 
-        
+
+                        uvIndexCheck(uvIndex, index);
+                        var pW2 = document.createElement("p");
+
+                        $(pW2).attr({"id": "color"+index, "class":color});
+
+                        subContainerCreateW.appendChild(pW2);
+                        var nameTxt2 = "UV Index: " + uvIndex;
+                        pW2.innerHTML = nameTxt2;
+
                         var imgContainer = document.createElement("img");
                         $(imgContainer).attr({"src":icon, "class":"icon", "alt":altImg});
                         subContainerCreateW.appendChild(imgContainer);

@@ -80,8 +80,10 @@
   .temp-div-box2 {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+
   }
   #results-w-day0 > * {
     padding: 15px;
@@ -96,6 +98,27 @@
   .temp-div-box22 > * {
     padding: 10px;
   }
+  .green {
+    color: green;    
+    background-color: rgb(204, 245, 250);
+  }
+  .yellow {
+    color: yellow;
+    background-color:rgb(54, 55, 56);
+  }
+  .orange {
+    color: orange;
+    background-color:rgb(54, 55, 56);
+  }
+  .red {
+      color: red;
+      background-color: rgb(123, 219, 231);
+  }
+  .purple {
+      color: purple;
+      background-color:rgb(123, 219, 231);
+  }
+
   h2 {
     font-size: 32px;
     font-weight: bold;
