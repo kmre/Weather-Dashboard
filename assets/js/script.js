@@ -9,24 +9,31 @@
     var extreme = false;
     var color = "";
 
+    // window.addEventListener('unload', function(event) {
+    //     localStorage.clear();
+    // });
 
     $("#message").hide();
+
     window.addEventListener('DOMContentLoaded', displaySavedObj);
 
-    //clear local storage when window is closed
-    //window.onunload = () => {
-       //localStorage.clear();
-     //}
-
+    //delete message for the warnihng window
     deleteMessage.addEventListener("click", reset);
+
     srchBtn.addEventListener("click", inBoxCheck); //Made the fetch into its own fn
+
+    $("#resetBtn").click(function(){
+
+        localStorage.clear();
+        location.reload();
+        
+    })
 
     function selectedButton(clicked_id, clicked_txt) { 
         //debugger;
         var city = clicked_txt;
         console.log(city);
         weatherAPI(city)
-
     }
 
     function inBoxCheck(event) {
@@ -56,7 +63,7 @@
             $("#message").show();
         }
     };
-
+    //function for the warning window
     function reset() {
         messageBox(true);
     }
@@ -205,7 +212,7 @@
                 console.log(storedCities)
                 var btnContainer = document.getElementById("save-div-btn");
                 var createBtn = document.createElement("button");
-                $(createBtn).attr({"id":"button","class":"city column"});
+                $(createBtn).attr({"id":"button","class":"city column", "onClick": "selectedButton(this.id, this.innerHTML)"});
                 btnContainer.appendChild(createBtn);
                 var btnTxt = `${item}`.toUpperCase();
                 createBtn.innerHTML = btnTxt; 

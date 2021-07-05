@@ -37,6 +37,7 @@
     cursor: pointer;
     width: 100%;
     box-shadow: 0 2px #999;
+    margin-bottom: 10px;
   }
   .button:hover {
     background-color: rgb(37, 190, 152);
