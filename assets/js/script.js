@@ -21,9 +21,10 @@
         var cityLower = cityInput.toLowerCase();
         var lettersState = /^[a-zA-Z\s]+\,[a-zA-Z\s]+$/;
         var lettersCity = /^[a-zA-Z\s]+$/;
-        console.log(cityInput)
+        //console.log(cityInput)
         if (cityInput && (cityLower.match(lettersState)||cityLower.match(lettersCity))) {
             messageBox(true);
+            saveSearch(cityInput);
             weatherAPI(cityLower);
         }
         else { 
@@ -32,7 +33,7 @@
     };
 
     function messageBox(event) {
-        console.log(event);
+        //console.log(event);
         if (event === true) {
             $("#message").hide();  
         }
@@ -88,24 +89,87 @@
     function pColor(low, mod, high, vH, extreme, index) {
         
         if (low) {
-            console.log("green")  
+            //console.log("green")  
             color = "green";  
         }
         else if (mod) {
-            console.log("yellow")
+            //console.log("yellow")
             color = "yellow";        
         }
         else if (high) {
-            console.log("orange")
+            //console.log("orange")
             color = "orange"; 
         }
         else if (vH) {
-            console.log("Red")
+            //console.log("Red")
             color = "red"; 
         }
         else if (extreme) {
             color = "purple"; 
         }
+    }
+
+
+    function saveSearch(cityInput) {
+        var city = cityInput;
+        var maxNumber = 3; 
+        var stored_cities = "cities"
+        console.log(city);
+        var srchCity = city;
+        console.log(srchCity);
+
+        var storedCities = JSON.parse(localStorage.getItem(stored_cities)) ?? [];
+        console.log(storedCities)
+        console.log(!storedCities.length)
+
+        if (!storedCities.length) {
+            //save city
+             //pushes new city to the array
+             storedCities.push(srchCity);
+             console.log(storedCities)
+             localStorage.setItem(stored_cities, JSON.stringify(storedCities));
+             createBtn0(srchCity);
+             console.log(document.getElementById("button"))
+             if (!document.getElementById("button")) {
+                deleteBtns();
+             }
+        }
+        else {
+            storedCities.push(srchCity);
+            localStorage.setItem(stored_cities, JSON.stringify(storedCities));
+            //storedCities.splice(maxNumber);
+            deleteBtns();
+            storedCities.forEach((item) => {
+            console.log(item)
+            console.log(storedCities)
+            var btnContainer = document.getElementById("save-div-btn");
+            var createBtn = document.createElement("button");
+            $(createBtn).attr({"id":"button","class":"city"});
+            btnContainer.appendChild(createBtn);
+            var btnTxt = `${item}`.toUpperCase();
+            createBtn.innerHTML = btnTxt; 
+        })
+
+        }
+
+    }
+    function createBtn0(srchCity) {
+        var btnContainer = document.getElementById("save-div-btn");
+             var createBtn = document.createElement("button");
+             $(createBtn).attr({"id":"button", "class":"city"});
+             btnContainer.appendChild(createBtn);
+             var btnTxt = srchCity.toUpperCase();
+             createBtn.innerHTML = btnTxt;
+    }
+
+    function deleteBtns() {
+        var btns = document.getElementById("save-div-btn")
+        btns.remove();
+        var container = document.getElementById("save-div")
+        var createDiv = document.createElement("div");
+             $(createDiv).attr({"id":"save-div-btn", "class":"container box"});
+             container.appendChild(createDiv);
+
     }
 
   function weatherAPI(latitude, longitude) {
@@ -127,7 +191,7 @@
 
     fetch (url)
         .then(function(response) { //=> response.json())
-                console.log(response);
+                //console.log(response);
             if (response.statusText !== "No Content") {    
                 response.json().then(function(data) {
                 //console.log(data);
@@ -142,11 +206,11 @@
 }
 
     function dataForContainers(data) {
-        console.log(data)
+        //console.log(data)
         var dataArray = data.data;
-        var containerDelete = document.getElementById("results-weather")
+        var containerDelete = document.getElementById("results-weather");
             containerDelete.remove();
-        console.log(dataArray)
+        //console.log(dataArray)
         var mainContainerW = document.getElementById("results-main");
             var eventContainer = document.createElement("div");
             $(eventContainer).attr({"id": "results-weather", "class": "container"});
@@ -174,8 +238,8 @@
                     var humidity = weatherIndexed.rh;
                     var uvIndex = weatherIndexed.uv;
                     var windSpeed = weatherIndexed.wind_spd
-                    console.log("weather index " + index)
-                    console.log("city weather " + weathertemp)
+                    //console.log("weather index " + index)
+                    //console.log("city weather " + weathertemp)
                     //creates a container for each result
                     //looks for div with id results-main-w to append childs
                     if (index == 0) {
@@ -212,8 +276,8 @@
                         var imgContainer = document.createElement("img");
                         $(imgContainer).attr({"src":icon, "class":"icon", "alt":altImg});
                         subContainerCreateW.appendChild(imgContainer);
-                        console.log(index)
-                        console.log(icon)
+                        //console.log(index)
+                        //console.log(icon)
                     }
                     else {
 
@@ -248,8 +312,8 @@
                         var imgContainer = document.createElement("img");
                         $(imgContainer).attr({"src":icon, "class":"icon", "alt":altImg});
                         subContainerCreateW.appendChild(imgContainer);
-                        console.log(index)
-                        console.log(icon)
+                       // console.log(index)
+                        //console.log(icon)
                     }
             })
     }
