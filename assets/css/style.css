@@ -49,8 +49,7 @@
     visibility: hidden;
   } */
   #main-body {
-    margin: 0px;
-
+    margin: 10px;
   }
   #results-main {
     display: flex;
