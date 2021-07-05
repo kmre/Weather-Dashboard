@@ -140,7 +140,7 @@
                         var getContainerW = document.getElementById("results-weather22");
                         //creates div for each day (currently set at 5) adds attribute id and appends
                         var subContainerCreateW = document.createElement("div");
-                        $(subContainerCreateW).attr({"id": "results-w-day" + index, "class": "temp-div-box22 container"});
+                        $(subContainerCreateW).attr({"id": "results-w-day" + index, "class": "temp-div-box22 container box"});
                         getContainerW.appendChild(subContainerCreateW);
                         //creates <h3> to show text for current location and appends days from API
                         //var containerW = document.getElementById("results-w" + eventIndexW);

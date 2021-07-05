@@ -25,6 +25,10 @@
   .field:not(:last-child) {
       margin: 0px;
   }
+  .block:not(:last-child), .box:not(:last-child), .breadcrumb:not(:last-child), .content:not(:last-child), .highlight:not(:last-child), .level:not(:last-child), .list:not(:last-child), .message:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .subtitle:not(:last-child), .table-container:not(:last-child), .table:not(:last-child), .tabs:not(:last-child), .title:not(:last-child) { 
+    margin: 0px;
+  }
+
   .field {
     margin: 0px;
     padding: 0px;
@@ -79,11 +83,9 @@
     justify-content: space-around;
     width: 100%;
   }
-
   #results-w-day0 > * {
     padding: 15px;
   } 
-
   .temp-div-box22 {
     display: flex;
     flex-flow: column nowrap;
@@ -92,13 +94,10 @@
   .temp-div-box22 > * {
     padding: 10px;
   }
-
   h2 {
     font-size: 32px;
     font-weight: bold;
-
   }
-
   h3 {
     font-size: 25px;
     text-align: center;
