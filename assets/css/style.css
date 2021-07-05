@@ -55,8 +55,56 @@
   #results-main {
     display: flex;
     flex-flow: column nowrap;
+  }
+  #results-weather {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    align-items: center;
+  }
+   #results-weather2 {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    font-size: 25px;
+  } 
+   #results-weather22 {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 17px;
+    width: 100%;
+  } 
+  .temp-div-box2 {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  #results-w-day0 > * {
+    padding: 15px;
+  } 
+
+  .temp-div-box22 {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+  }
+  .temp-div-box22 > * {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: bold;
 
   }
+
+  h3 {
+    font-size: 25px;
+    text-align: center;
+  }
+
 
   
 
